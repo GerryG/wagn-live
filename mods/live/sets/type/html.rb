@@ -1,0 +1,1 @@
+def purple?; false end
