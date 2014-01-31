@@ -1,4 +1,7 @@
+require 'card/content'
+
 class Card::Content
+  PURPLE_ATTR = 'data-purple'
   PURPLE_TAGS = %w{
     i b pre caption strong em ol ul li p div h1 h2 h3 h4 h5 h6 span
     table tr td th tfoot }.to_set.freeze
@@ -6,14 +9,6 @@ class Card::Content
   PURPLE_TAGS.each {|k|
     ALLOWED_TAGS[k] << PURPLE_ATTR
   }
-  ALLOWED_TAGS.each_key {|k|
-    ALLOWED_TAGS[k] << 'class'
-    ALLOWED_TAGS[k] << 'style' if Wagn::Conf[:allow_inline_styles]
-    ALLOWED_TAGS[k].freeze
-  }
-  ALLOWED_TAGS.freeze
-
-  ATTR_VALUE_RE = [ /(?<=^')[^']+(?=')/, /(?<=^")[^"]+(?=")/, /\S+/ ]
 
   class << self
 

@@ -11,9 +11,15 @@ PATH
       rmagick (~> 2.13)
       rubyzip (~> 1.0)
       sass (~> 3.2)
-      smartname (= 0.2.3.d)
       uuid (~> 2.3)
       xmlscan (~> 0.3)
+
+PATH
+  remote: ../smartname
+  specs:
+    smartname (0.2.3.d)
+      activesupport
+      htmlentities (~> 4.3.0)
 
 GEM
   remote: http://rubygems.org/
@@ -55,11 +61,23 @@ GEM
     cocaine (0.5.3)
       climate_control (>= 0.0.3, < 1.0)
     coderay (1.1.0)
+    coffee-rails (3.2.2)
+      coffee-script (>= 2.2.0)
+      railties (~> 3.2.0)
+    coffee-script (2.2.0)
+      coffee-script-source
+      execjs
+    coffee-script-source (1.7.0)
     erubis (2.7.0)
+    execjs (2.0.2)
     hike (1.2.3)
     htmlentities (4.3.1)
     i18n (0.6.9)
     journey (1.0.4)
+    jquery-rails (2.3.0)
+      railties (>= 3.0, < 5.0)
+      thor (>= 0.14, < 2.0)
+    jquerymobile-rails (0.2.3)
     json (1.8.1)
     macaddr (1.6.1)
       systemu (~> 2.5.0)
@@ -104,9 +122,6 @@ GEM
     rmagick (2.13.2)
     rubyzip (1.1.0)
     sass (3.2.14)
-    smartname (0.2.3.d)
-      activesupport
-      htmlentities (~> 4.3.0)
     sprockets (2.2.2)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -115,6 +130,8 @@ GEM
     systemu (2.5.2)
     thor (0.18.1)
     tilt (1.4.1)
+    tinymce-rails (3.5.9)
+      railties (>= 3.1.1)
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
@@ -127,5 +144,10 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  coffee-rails (~> 3.1)
+  jquery-rails (~> 2.3.0)
+  jquerymobile-rails (~> 0.2)
   mysql2 (~> 0.3)
+  smartname!
+  tinymce-rails (~> 3.4)
   wagn!
