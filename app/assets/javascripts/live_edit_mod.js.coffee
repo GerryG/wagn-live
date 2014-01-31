@@ -27,7 +27,7 @@ $.extend wagn_live,
     wagn_live.typeSelection = $('head script[type="text/template"].live-type-selection')
     if wagn_live.typeSelection.length > 0
       wagn_live.typeSelection = wagn_live.typeSelection[0].innerHTML
-      titledCard = $ 'div.titled-view'
+      titledCard = $ 'div.live_titled-view'
       titleDiv = titledCard.children 'h1.card-header'
       titleDiv.wrapInner wagn_live.liveTitle
       titleDiv = titleDiv.children 'div.live-title'
@@ -47,11 +47,11 @@ $.extend wagn_live,
       wagn_live.shareConnect data[0], data[1]
 
       $("div.live-title").hover wagn_live.showTitleWidget, wagn_live.hideTitleWidget
-      $('div.titled-view span.cardtype').on 'mouseup click', wagn_live.showTypeSelector
+      $('div.live_titled-view span.cardtype').on 'mouseup click', wagn_live.showTypeSelector
       $('div.card-content:not(.closed-content)').on 'focusin', wagn_live.editElementText
-      $('div.titled-view span.card-title').on 'focusin', wagn_live.editCardname
-      $('div.titled-view span.card-title').attr('contenteditable', true)
-      #$('div.titled-view span.card-title, div.card-content:not(.closed-content)').attr('contenteditable', true)
+      $('div.live_titled-view span.card-title').on 'focusin', wagn_live.editCardname
+      $('div.live_titled-view span.card-title').attr('contenteditable', true)
+      #$('div.live_titled-view span.card-title, div.card-content:not(.closed-content)').attr('contenteditable', true)
       true
 
   findContent: (nodes) ->
@@ -87,8 +87,8 @@ $.extend wagn_live,
         node.textContent
       else if type == 1
         tag = node.tagName
-        if tag == 'DIV' && (jnode.hasClass('card-content') || jnode.hasClass('titled-view'))
-          if jnode.hasClass('titled-view')
+        if tag == 'DIV' && (jnode.hasClass('card-content') || jnode.hasClass('live_titled-view'))
+          if jnode.hasClass('live_titled-view')
             node = jnode.find('.card-content')[0]
           data = JSON.parse(node.getAttribute('data-slot'))
           ['inclusion', data]
@@ -196,7 +196,7 @@ $.extend wagn_live,
     #selection = thisq.find(".live-type-selection")
     #selection.attr("style", "display:visible")
     if thisq.hasClass('no-edit')
-      cardName = thisq.parents('div.titled-view').attr('id')
+      cardName = thisq.parents('div.live_titled-view').attr('id')
       this.innerHTML= ("<span>Can't change type, " + cardName + " cards exits.</span>")
       timeout_function = ->
         that.innerHTML = typeName
