@@ -1,5 +1,7 @@
 require 'card/content'
 
+Card::Content
+
 class Card::Content
   PURPLE_ATTR = 'data-purple'
   PURPLE_TAGS = %w{
@@ -51,3 +53,21 @@ class Card::Content
 end
 
 def purple?; true end
+
+protected
+
+# override same method in core, adds purple? test/arg to clean!
+
+def set_content new_content
+  if self.id #have to have this to create revision
+    new_content ||= ''
+    new_content = Card::Content.clean! new_content, nil, purple? if clean_html?
+    clear_drafts if current_revision_id
+    new_rev = Card::Revision.create :card_id=>self.id, :content=>new_content, :creator_id =>Account.current_id
+    self.current_revision_id = new_rev.id
+    reset_patterns_if_rule saving=true
+    @name_or_content_changed = true
+  else
+    false
+  end
+end
