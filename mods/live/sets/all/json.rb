@@ -9,19 +9,8 @@ format :json do
     updater = card.updater and h[:updater] = updater.name
     h[:status] == :real and h[:creator] = card.creator.name
     h[:content] = card.raw_content
-    
-    unless @depth == max_depth
-      h[:value] = _render default_item_view, args
-    end
-    if @depth==0
-      {
-        :url => controller.request.original_url,
-        :timestamp => Time.now.to_s,
-        :card => h
-      }
-    else
-      h
-    end
+    h[:value] = _render_core args if @depth < max_depth
+    h
   end
 
 end
